@@ -8,8 +8,9 @@ let snakePosition = {}
 let foodPosition = {}
 //array that will hold the location of each snake div as the game rolls forward
 let snakeArr = []
-let seconds = 0
-let time
+let direction = 0
+let timer
+
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -20,7 +21,7 @@ const board = document.querySelector('body')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-board.addEventListener('keydown', function(evt) {
+board.addEventListener('keyup', function(evt) {
   handleClick(evt)
 })
 
@@ -29,33 +30,32 @@ board.addEventListener('keydown', function(evt) {
 
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
-
-  if (evt.code === `ArrowUp`) {
-    moveSnake('up')
+  if (evt.code === `ArrowUp` && direction !== 'down') {
+    direction = 'up'
   }
-  else if (evt.code === `ArrowDown`) {
-    moveSnake('down')
+  else if (evt.code === `ArrowDown` && direction !== 'up') {
+    direction = 'down'
   }
-  else if (evt.code === `ArrowRight`) {
-    moveSnake('right')
+  else if (evt.code === `ArrowRight` && direction !== 'left') {
+    direction = 'right'
   }
-  else if (evt.code === `ArrowLeft`) {
-    moveSnake('left')
+  else if (evt.code === `ArrowLeft` && direction !== 'right') {
+    direction = 'left'
   }
   else if (evt.code === `Space`) {
-    // this will reset the game after you lose
-    direction = ''
+    init()
   }
+  moveSnake()
 }
 
 init()
 
 function init() {
+  direction = 0
   snek.style.gridRowStart = 10
   snek.style.gridColumnStart = 10
   renderFood()
-  // timerInterval = setInterval(moveSnake(), 1000)
-  // console.log(timerInterval)  
+
 }
 
 function renderFood()  {
@@ -67,22 +67,26 @@ function renderFood()  {
 }
 
 
-function moveSnake(direction)  {
-  if (direction === 'down') {
-    snek.style.gridRowStart++
-  }
-  else if (direction === 'up')  {
-    snek.style.gridRowStart--
-  }
-  else if (direction === 'right') {
-    snek.style.gridColumnStart++
-  }
-  else if (direction === 'left')  {
-    snek.style.gridColumnStart--
+function moveSnake()  {
+  if (timer) {
+    if (direction === 'down') {
+      snek.style.gridRowStart++
+    }
+    else if (direction === 'up')  {
+      snek.style.gridRowStart--
+    }
+    else if (direction === 'right') {
+      snek.style.gridColumnStart++
+    }
+    else if (direction === 'left')  {
+      snek.style.gridColumnStart--
+    } 
+  } else  {
+    timer = setInterval(function()  {
+      moveSnake()
+    }, 333)
   }
   snakePosition.x = snek.style.gridColumnStart
   snakePosition.y = snek.style.gridRowStart
   console.log(snakePosition)
-
-
 }
