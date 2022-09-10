@@ -4,12 +4,14 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let snakePosition = {}
+let snekHead = {}
 let foodPosition = {}
 //array that will hold the location of each snake div as the game rolls forward
-let snakeArr = []
+let loser = false
 let direction = 0
 let timer
+let points = 0
+let snakeArr = []
 
 
 
@@ -18,6 +20,7 @@ const snek = document.querySelector('#snek')
 const food = document.querySelector('#food')
 const title = document.querySelector('#message')
 const board = document.querySelector('body')
+const snakeBody = document.querySelector('.snake')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -48,6 +51,7 @@ function handleClick(evt) {
     //this wiring fix also makes the game timer begin before the snake starts moving.
     //this also stops the snake from 'skipping' faster if you button-mash the same 
     //direction, smoothing out overall gameplay
+    //i think i'll make it into a button that switchs to hidden while you're playing.
     init()
   }
 
@@ -61,6 +65,7 @@ function init() {
   snek.style.gridColumnStart = 10
   renderFood()
   moveSnake()
+  
 }
 
 function renderFood()  {
@@ -68,8 +73,28 @@ function renderFood()  {
   food.style.gridRowStart = (Math.floor(Math.random() * 20))
   foodPosition.x = food.style.gridColumnStart
   foodPosition.y = food.style.gridRowStart
-  console.log(foodPosition)
 }
+
+
+function goodJob()  {
+  renderFood()
+  points++
+  snakeArr.push(snekHead)
+  console.log(snakeArr)
+  // let newBod = document.createElement('div')
+  // newBod.classList.add('snake')
+  // board.appendChild(newBod)
+  // console.log(newBod)
+}
+
+function renderBod() {
+  snakeArr[0] = snekHead
+  snakeArr.forEach(function(obj, idx)  {
+    snakeArr[idx - 1] = obj
+  })
+  console.log(snakeArr)
+}
+
 
 
 function moveSnake()  {
@@ -91,6 +116,12 @@ function moveSnake()  {
       moveSnake()
     }, 333)
   }
-  snakePosition.x = snek.style.gridColumnStart
-  snakePosition.y = snek.style.gridRowStart
+  snekHead.x = snek.style.gridColumnStart
+  snekHead.y = snek.style.gridRowStart
+  renderBod()
+  //condtion for when you score a point:
+  if  (food.style.gridColumnStart === snek.style.gridColumnStart && food.style.gridRowStart === snek.style.gridRowStart)  {
+    goodJob()
+  }
+  //condition for when you lose; either by going outside the board or by hitting the snake body:
 }
