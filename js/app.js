@@ -43,9 +43,14 @@ function handleClick(evt) {
     direction = 'left'
   }
   else if (evt.code === `Space`) {
+    //init() call only exists ~HERE~ to reset on the fly for testing. 
+    //Later, this will only be available after losing. 
+    //this wiring fix also makes the game timer begin before the snake starts moving.
+    //this also stops the snake from 'skipping' faster if you button-mash the same 
+    //direction, smoothing out overall gameplay
     init()
   }
-  moveSnake()
+
 }
 
 init()
@@ -55,7 +60,7 @@ function init() {
   snek.style.gridRowStart = 10
   snek.style.gridColumnStart = 10
   renderFood()
-
+  moveSnake()
 }
 
 function renderFood()  {
@@ -88,5 +93,4 @@ function moveSnake()  {
   }
   snakePosition.x = snek.style.gridColumnStart
   snakePosition.y = snek.style.gridRowStart
-  console.log(snakePosition)
 }
