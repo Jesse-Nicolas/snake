@@ -1,0 +1,34 @@
+body{
+  display: flex;
+  flex-direction: column;
+  background-color:bisque;
+  justify-content: center;
+  align-items: center;
+}
+
+#message  {
+  height: 20px;
+  width: 90vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+#board  {
+  display: grid;
+  grid-template-columns: repeat(20,1fr);
+  grid-template-rows: repeat(20, 1fr);
+  height: 90vh;
+  width: 90vh;
+  margin-top: 5px;
+  border: 1px solid black
+}
+
+
+#snek  {
+  background-color: black;
+  grid-column-start: 10;
+  grid-row-start: 10;
+}
+#food {
+background-color: red;
+}
