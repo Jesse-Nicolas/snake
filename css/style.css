@@ -26,8 +26,8 @@ body{
 
 #snek  {
   background-color: black;
-  grid-column-start: 10;
-  grid-row-start: 10;
+  /* grid-column-start: 10;
+  grid-row-start: 10; */
 }
 #food {
 background-color: red;
