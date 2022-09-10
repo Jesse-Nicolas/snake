@@ -4,7 +4,7 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let snekHead = {}
+let snakeHead = {}
 let foodPosition = {}
 //array that will hold the location of each snake div as the game rolls forward
 let loser = false
@@ -16,7 +16,7 @@ let snakeArr = []
 
 
 /*------------------------ Cached Element References ------------------------*/
-const snek = document.querySelector('#snek')
+const snake = document.querySelector('.snake')
 const food = document.querySelector('#food')
 const title = document.querySelector('#message')
 const board = document.querySelector('body')
@@ -57,15 +57,14 @@ function handleClick(evt) {
 
 }
 
-init()
+
 
 function init() {
   direction = 0
-  snek.style.gridRowStart = 10
-  snek.style.gridColumnStart = 10
+  snake.style.gridRowStart = 10
+  snake.style.gridColumnStart = 10
   renderFood()
   moveSnake()
-  
 }
 
 function renderFood()  {
@@ -73,26 +72,28 @@ function renderFood()  {
   food.style.gridRowStart = (Math.floor(Math.random() * 20))
   foodPosition.x = food.style.gridColumnStart
   foodPosition.y = food.style.gridRowStart
+  
 }
 
 
-function goodJob()  {
+function goodJob(snakeHead)  {
   renderFood()
   points++
-  snakeArr.push(snekHead)
-  console.log(snakeArr)
+  // snakeArr.push(snakeHead)
+  // console.log(snakeArr)
   // let newBod = document.createElement('div')
+  // console.log(newBod)
   // newBod.classList.add('snake')
   // board.appendChild(newBod)
   // console.log(newBod)
 }
 
 function renderBod() {
-  snakeArr[0] = snekHead
-  snakeArr.forEach(function(obj, idx)  {
-    snakeArr[idx - 1] = obj
-  })
-  console.log(snakeArr)
+  // snakeArr[0] = snakeHead
+  // snakeArr.forEach(function(obj, idx)  {
+  //   snakeArr[idx - 1] = obj
+  // })
+  // console.log(snakeArr)
 }
 
 
@@ -100,27 +101,29 @@ function renderBod() {
 function moveSnake()  {
   if (timer) {
     if (direction === 'down') {
-      snek.style.gridRowStart++
+      snake.style.gridRowStart++
     }
     else if (direction === 'up')  {
-      snek.style.gridRowStart--
+      snake.style.gridRowStart--
     }
     else if (direction === 'right') {
-      snek.style.gridColumnStart++
+      snake.style.gridColumnStart++
     }
     else if (direction === 'left')  {
-      snek.style.gridColumnStart--
+      snake.style.gridColumnStart--
     } 
   } else  {
     timer = setInterval(function()  {
       moveSnake()
     }, 333)
   }
-  snekHead.x = snek.style.gridColumnStart
-  snekHead.y = snek.style.gridRowStart
-  renderBod()
+  snakeHead.x = snake.style.gridColumnStart
+  snakeHead.y = snake.style.gridRowStart
+  // renderBod()    //already disabled - not sure of it's necessity.
   //condtion for when you score a point:
-  if  (food.style.gridColumnStart === snek.style.gridColumnStart && food.style.gridRowStart === snek.style.gridRowStart)  {
+  if  (food.style.gridColumnStart === snake.style.gridColumnStart && food.style.gridRowStart === snake.style.gridRowStart)  {
+    snakeArr.push(snakeHead)
+    console.log(snakeArr)
     goodJob()
   }
   //condition for when you lose; either by going outside the board or by hitting the snake body:

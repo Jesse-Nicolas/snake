@@ -23,12 +23,10 @@ body{
   border: 1px solid black
 }
 
-.snek  {
+.snake  {
   background-color: darkolivegreen;
 }
-#snek  {
-  background-color: black;
-}
+
 #food {
   background-color: red;
 }
