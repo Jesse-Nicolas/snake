@@ -4,7 +4,7 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let snakeHead = {}
+let headPosition = {}
 let foodPosition = {}
 //array that will hold the location of each snake div as the game rolls forward
 let loser = false
@@ -19,12 +19,13 @@ let snakeArr = []
 const snake = document.querySelector('.snake')
 const food = document.querySelector('#food')
 const title = document.querySelector('#message')
-const board = document.querySelector('body')
+const body = document.querySelector('body')
 const snakeBody = document.querySelector('.snake')
+const board = document.getElementById('board')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-board.addEventListener('keyup', function(evt) {
+body.addEventListener('keyup', function(evt) {
   handleClick(evt)
 })
 
@@ -61,8 +62,8 @@ function handleClick(evt) {
 
 function init() {
   direction = 0
-  snake.style.gridRowStart = 10
-  snake.style.gridColumnStart = 10
+  snake.style.gridColumnStart = 10;
+  snake.style.gridRowStart = 10;
   renderFood()
   moveSnake()
 }
@@ -76,10 +77,10 @@ function renderFood()  {
 }
 
 
-function goodJob(snakeHead)  {
+function goodJob()  {
   renderFood()
   points++
-  // snakeArr.push(snakeHead)
+  // snakeArr.push(headPosition)
   // console.log(snakeArr)
   // let newBod = document.createElement('div')
   // console.log(newBod)
@@ -89,11 +90,9 @@ function goodJob(snakeHead)  {
 }
 
 function renderBod() {
-  // snakeArr[0] = snakeHead
-  // snakeArr.forEach(function(obj, idx)  {
-  //   snakeArr[idx - 1] = obj
-  // })
-  // console.log(snakeArr)
+  for (i=0; i>(-points); i--)  {
+    let div
+  }
 }
 
 
@@ -117,12 +116,13 @@ function moveSnake()  {
       moveSnake()
     }, 333)
   }
-  snakeHead.x = snake.style.gridColumnStart
-  snakeHead.y = snake.style.gridRowStart
+  let x = snake.style.gridColumnStart
+  let y = snake.style.gridRowStart
+  snakeArr.push({x: x, y: y})
   // renderBod()    //already disabled - not sure of it's necessity.
   //condtion for when you score a point:
   if  (food.style.gridColumnStart === snake.style.gridColumnStart && food.style.gridRowStart === snake.style.gridRowStart)  {
-    snakeArr.push(snakeHead)
+    snakeArr.push({x: x, y: y})
     console.log(snakeArr)
     goodJob()
   }
