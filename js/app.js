@@ -16,11 +16,11 @@ let snakeArr = []
 
 
 /*------------------------ Cached Element References ------------------------*/
+const head = document.getElementById('snake')
 const snake = document.querySelector('.snake')
 const food = document.querySelector('#food')
 const title = document.querySelector('#message')
 const body = document.querySelector('body')
-const snakeBody = document.querySelector('.snake')
 const board = document.getElementById('board')
 
 
@@ -34,6 +34,7 @@ body.addEventListener('keyup', function(evt) {
 
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
+  
   if (evt.code === `ArrowUp` && direction !== 'down') {
     direction = 'up'
   }
@@ -62,8 +63,8 @@ function handleClick(evt) {
 
 function init() {
   direction = 0
-  snake.style.gridColumnStart = 10;
-  snake.style.gridRowStart = 10;
+  head.style.gridColumnStart = 10;
+  head.style.gridRowStart = 10;
   renderFood()
   moveSnake()
 }
@@ -80,18 +81,18 @@ function renderFood()  {
 function goodJob()  {
   renderFood()
   points++
-  // snakeArr.push(headPosition)
-  // console.log(snakeArr)
-  // let newBod = document.createElement('div')
-  // console.log(newBod)
-  // newBod.classList.add('snake')
-  // board.appendChild(newBod)
-  // console.log(newBod)
 }
 
 function renderBod() {
-  for (i=0; i>(-points); i--)  {
-    let div
+  for (i=0; i<points; i++)  {
+    console.log('nice!')
+    let bod = document.createElement('div')
+    bod.classList.add('snake')
+    let obj = snakeArr[i]
+    console.log(i)
+    bod.style.gridColumnStart = obj.x
+    bod.style.gridRowStart = obj.y
+    board.appendChild(bod)
   }
 }
 
@@ -100,31 +101,31 @@ function renderBod() {
 function moveSnake()  {
   if (timer) {
     if (direction === 'down') {
-      snake.style.gridRowStart++
+      head.style.gridRowStart++
     }
     else if (direction === 'up')  {
-      snake.style.gridRowStart--
+      head.style.gridRowStart--
     }
     else if (direction === 'right') {
-      snake.style.gridColumnStart++
+      head.style.gridColumnStart++
     }
     else if (direction === 'left')  {
-      snake.style.gridColumnStart--
+      head.style.gridColumnStart--
     } 
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 333)
+    }, 1000)
   }
-  let x = snake.style.gridColumnStart
-  let y = snake.style.gridRowStart
-  snakeArr.push({x: x, y: y})
-  // renderBod()    //already disabled - not sure of it's necessity.
+  headPosition.x = head.style.gridColumnStart
+  headPosition.y = head.style.gridRowStart
+  snakeArr.unshift({x: headPosition.x, y: headPosition.y}) 
+  if (snakeArr.length > 40) {snakeArr.pop()}
   //condtion for when you score a point:
-  if  (food.style.gridColumnStart === snake.style.gridColumnStart && food.style.gridRowStart === snake.style.gridRowStart)  {
-    snakeArr.push({x: x, y: y})
+  if  (food.style.gridColumnStart === head.style.gridColumnStart && food.style.gridRowStart === head.style.gridRowStart)  {
     console.log(snakeArr)
     goodJob()
   }
+  renderBod()
   //condition for when you lose; either by going outside the board or by hitting the snake body:
 }
