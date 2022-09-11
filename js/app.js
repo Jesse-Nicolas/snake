@@ -17,7 +17,7 @@ let snakeArr = []
 
 /*------------------------ Cached Element References ------------------------*/
 const head = document.getElementById('snake')
-const snake = document.querySelector('.snake')
+const snake = document.getElementsByClassName('snake')
 const food = document.querySelector('#food')
 const title = document.querySelector('#message')
 const body = document.querySelector('body')
@@ -83,16 +83,23 @@ function goodJob()  {
   points++
 }
 
+function removeAllSnakeBods(board)  {
+  while (document.querySelector('.snake')) {
+    let bod = document.querySelector('.snake')
+    board.removeChild(bod)
+  }
+  //let bods = document.querySelectorAll('.snake')
+}
+
 function renderBod() {
-  for (i=0; i<points; i++)  {
-    console.log('nice!')
-    let bod = document.createElement('div')
-    bod.classList.add('snake')
-    let obj = snakeArr[i]
-    console.log(i)
-    bod.style.gridColumnStart = obj.x
-    bod.style.gridRowStart = obj.y
-    board.appendChild(bod)
+    for (i=0; i<points; i++)  {
+      let bod = document.createElement('div')
+      bod.classList.add('snake')
+      let obj = snakeArr[i]
+      console.log(i)
+      bod.style.gridColumnStart = obj.x
+      bod.style.gridRowStart = obj.y
+      board.appendChild(bod)
   }
 }
 
@@ -115,7 +122,7 @@ function moveSnake()  {
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 1000)
+    }, 300)
   }
   headPosition.x = head.style.gridColumnStart
   headPosition.y = head.style.gridRowStart
@@ -123,9 +130,9 @@ function moveSnake()  {
   if (snakeArr.length > 40) {snakeArr.pop()}
   //condtion for when you score a point:
   if  (food.style.gridColumnStart === head.style.gridColumnStart && food.style.gridRowStart === head.style.gridRowStart)  {
-    console.log(snakeArr)
     goodJob()
   }
+  removeAllSnakeBods(board)
   renderBod()
   //condition for when you lose; either by going outside the board or by hitting the snake body:
 }
