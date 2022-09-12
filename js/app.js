@@ -7,7 +7,6 @@
 let headPosition = {}
 let foodPosition = {}
 //array that will hold the location of each snake div as the game rolls forward
-let loser = false
 let direction = 0
 let timer
 let points = 0
@@ -30,8 +29,6 @@ body.addEventListener('keyup', function(evt) {
 })
 
 
-
-
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
   
@@ -48,6 +45,7 @@ function handleClick(evt) {
     direction = 'left'
   }
   else if (evt.code === `Space`) {
+    clearInterval(timer)
     //init() call only exists ~HERE~ to reset on the fly for testing. 
     //Later, this will only be available after losing. 
     //this wiring fix also makes the game timer begin before the snake starts moving.
@@ -63,15 +61,15 @@ function handleClick(evt) {
 
 function init() {
   direction = 0
-  head.style.gridColumnStart = 10;
-  head.style.gridRowStart = 10;
+  head.style.gridColumnStart = 8;
+  head.style.gridRowStart = 8;
   renderFood()
   moveSnake()
 }
 
 function renderFood()  {
-  food.style.gridColumnStart = (Math.floor(Math.random() * 20))
-  food.style.gridRowStart = (Math.floor(Math.random() * 20))
+  food.style.gridColumnStart = (Math.floor(Math.random() * 17))
+  food.style.gridRowStart = (Math.floor(Math.random() * 17))
   foodPosition.x = food.style.gridColumnStart
   foodPosition.y = food.style.gridRowStart
   
@@ -88,22 +86,33 @@ function removeAllSnakeBods(board)  {
     let bod = document.querySelector('.snake')
     board.removeChild(bod)
   }
-  //let bods = document.querySelectorAll('.snake')
 }
 
 function renderBod() {
-    for (i=0; i<points; i++)  {
+    for (i=1; i<=points; i++)  {
       let bod = document.createElement('div')
       bod.classList.add('snake')
       let obj = snakeArr[i]
-      console.log(i)
       bod.style.gridColumnStart = obj.x
       bod.style.gridRowStart = obj.y
+      // if (bod = headPosition) {console.log('LOSER!!!')}
       board.appendChild(bod)
   }
 }
 
-
+function checkLoss()  {
+  let currentFrame = snakeArr[0]
+  let lastFrame = snakeArr[1]
+  if (currentFrame.x === lastFrame.x && currentFrame.y === lastFrame.y && currentFrame.x !== 8) {
+    console.log('you lost!')
+  }
+  else if (currentFrame.x > 17 || currentFrame.y > 17)  {
+    console.log('you lose!')
+  }
+  // else if (head.getAttirbute('class') = 'snake')  {
+  //   console.log (`you've lost!`)
+  // }
+}
 
 function moveSnake()  {
   if (timer) {
@@ -122,17 +131,18 @@ function moveSnake()  {
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 300)
+    }, 350)
   }
   headPosition.x = head.style.gridColumnStart
   headPosition.y = head.style.gridRowStart
   snakeArr.unshift({x: headPosition.x, y: headPosition.y}) 
-  if (snakeArr.length > 40) {snakeArr.pop()}
   //condtion for when you score a point:
+  checkLoss()
   if  (food.style.gridColumnStart === head.style.gridColumnStart && food.style.gridRowStart === head.style.gridRowStart)  {
     goodJob()
   }
   removeAllSnakeBods(board)
   renderBod()
-  //condition for when you lose; either by going outside the board or by hitting the snake body:
+  while (snakeArr.length > points+1) {snakeArr.pop()}
+  console.log(snakeArr)
 }
