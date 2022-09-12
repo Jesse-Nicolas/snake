@@ -15,8 +15,8 @@ body{
 
 #board  {
   display: grid;
-  grid-template-columns: repeat(17,1fr);
-  grid-template-rows: repeat(17, 1fr);
+  grid-template-columns: repeat(23,1fr);
+  grid-template-rows: repeat(23, 1fr);
   height: 90vw;
   width: 90vw;
   margin-top: 5px;
@@ -33,6 +33,6 @@ body{
 }
 
 #food {
-  background-color: red;
+  background-color: brown;
   border: 1px solid black;
 }
