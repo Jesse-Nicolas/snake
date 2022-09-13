@@ -68,7 +68,7 @@ function handleClick(evt) {
 }
 
 function init() {
-  board.style.backgroundColor = 'bisque'
+  board.style.backgroundColor = 'rgb(227, 224, 224)'
   title.textContent = `Snake!`
   aside.textContent = `Go ahead!`
   removeAllSnakeBods()
@@ -135,7 +135,7 @@ function checkLoss()  {
 }
 
 function gameOver() {
-  board.style.backgroundColor = 'red'
+  board.style.backgroundColor = 'rgb(218, 85, 85, 1)'
   over = true
   direction = 0
   aside.textContent = `You got ${points} points!`
