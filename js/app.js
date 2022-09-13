@@ -1,34 +1,25 @@
-/*-------------------------------- Constants --------------------------------*/
-
-
-
-
 /*---------------------------- Variables (state) ----------------------------*/
 let headPosition = {}
 let foodPosition = {}
-//array that will hold the location of each snake div as the game rolls forward
 let direction = 0
 let timer
 let points = 0
 let snakeArr = []
 let over = true
 
-
-
 /*------------------------ Cached Element References ------------------------*/
 const head = document.getElementById('snake')
 const snake = document.getElementsByClassName('snake')
 const food = document.querySelector('#food')
-const title = document.querySelector('#message')
+const title = document.querySelector('#title')
 const body = document.querySelector('body')
 const board = document.getElementById('board')
-
+const aside = document.getElementById('aside')
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener('keyup', function(evt) {
   handleClick(evt)
 })
-
 
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
@@ -49,14 +40,12 @@ function handleClick(evt) {
     over = false
     init()
   }
-
 }
-
-
 
 function init() {
   board.style.backgroundColor = 'bisque'
-  message.textContent = `Snake!`
+  title.textContent = `Snake!`
+  aside.textContent = `Press the space bar to play!`
   removeAllSnakeBods()
   points = 0
   snakeArr = []
@@ -71,13 +60,12 @@ function renderFood()  {
   food.style.gridRowStart = (Math.floor(Math.random() * 23))
   foodPosition.x = food.style.gridColumnStart
   foodPosition.y = food.style.gridRowStart
-  
 }
-
 
 function goodJob()  {
   renderFood()
   points++
+  aside.textContent = `Points: ${points}`
 }
 
 function removeAllSnakeBods()  {
@@ -88,14 +76,14 @@ function removeAllSnakeBods()  {
 }
 
 function renderBod() {
-    for (i=1; i<=points; i++)  {
-      let bod = document.createElement('div')
-      bod.classList.add('snake')
-      let obj = snakeArr[i]
-      bod.style.gridColumnStart = obj.x
-      bod.style.gridRowStart = obj.y
-      if (obj.x === headPosition.x && obj.y === headPosition.y) {gameOver()}
-      board.appendChild(bod)
+  for (i=1; i<=points; i++)  {
+    let bod = document.createElement('div')
+    bod.classList.add('snake')
+    let obj = snakeArr[i]
+    bod.style.gridColumnStart = obj.x
+    bod.style.gridRowStart = obj.y
+    if (obj.x === headPosition.x && obj.y === headPosition.y) {gameOver()}
+    board.appendChild(bod)
   }
 }
 
@@ -104,7 +92,7 @@ function checkLoss()  {
   if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y && headPosition.x != 11) {
     gameOver()
   }
-  else if (headPosition.x > 23 || headPosition.y > 23)  {
+  if (headPosition.x > 23 || headPosition.y > 23)  {
     gameOver()
   }
 }
@@ -113,7 +101,8 @@ function gameOver() {
   board.style.backgroundColor = 'red'
   over = true
   direction = 0
-  message.textContent = `Nice, you got ${points} points! press space to restart!`
+  aside.textContent = `Nice, you got ${points} points!`
+  title.textContent = `Press the space bar to play again!`
   clearInterval(timer)
   timer = null
 }
@@ -135,12 +124,11 @@ function moveSnake()  {
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 350)
+    }, 250)
   }
   headPosition.x = head.style.gridColumnStart
   headPosition.y = head.style.gridRowStart
   snakeArr.unshift({x: headPosition.x, y: headPosition.y}) 
-  //condtion for when you score a point:
   if (timer)  {checkLoss()}
   if  (food.style.gridColumnStart === head.style.gridColumnStart && food.style.gridRowStart === head.style.gridRowStart)  {
     goodJob()
