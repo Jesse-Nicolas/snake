@@ -48,14 +48,23 @@ body{
   border: 1px solid black;
 }
 
-#buttons {
+#buttons  {
+  width: 90vw;
+  max-width: 650;
+  min-height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#arrows {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  column-gap: 10px;
 }
 
 #stack  {
   display: grid;
   grid-template-columns: 1;
-  gap: 15px;
+  gap: 3px;
 }

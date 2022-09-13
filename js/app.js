@@ -16,6 +16,7 @@ const body = document.querySelector('body')
 const board = document.getElementById('board')
 const aside = document.getElementById('aside')
 const buttons = document.getElementById('buttons')
+const hand = document.getElementById('toggleHand')
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener('keyup', function(evt) {
@@ -61,6 +62,9 @@ function handleClick(evt) {
     over = false
     init()
   }
+  else if (evt.getAttribute('id') === 'toggleHand') {
+    toggleHand()
+  }
 }
 
 function init() {
@@ -74,6 +78,16 @@ function init() {
   head.style.gridRowStart = 11;
   renderFood()
   moveSnake()
+}
+
+function toggleHand() {
+  if (buttons.style.flexDirection === 'row')  {
+    buttons.style.flexDirection = 'row-reverse'
+    hand.textContent = 'right handed?'
+  } else  {
+    buttons.style.flexDirection = 'row'
+    hand.textContent = 'left handed?'
+  }
 }
 
 function renderFood()  {
