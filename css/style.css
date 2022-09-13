@@ -39,3 +39,15 @@ body{
   background-color: brown;
   border: 1px solid black;
 }
+
+#buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+#stack  {
+  display: grid;
+  grid-template-columns: 1;
+  gap: 15px;
+}

@@ -15,28 +15,32 @@ const title = document.querySelector('#title')
 const body = document.querySelector('body')
 const board = document.getElementById('board')
 const aside = document.getElementById('aside')
+const buttons = document.getElementById('buttons')
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener('keyup', function(evt) {
   handleClick(evt)
 })
+buttons.addEventListener('click', function(evt) {
+  handleClick(evt.target)
+})
 
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
   
-  if (evt.code === `ArrowUp` && direction !== 'down' && over === false) {
+  if ((evt.code === `ArrowUp` || evt.getAttribute('id') === 'up') && direction !== 'down' && over === false) {
     direction = 'up'
   }
-  else if (evt.code === `ArrowDown` && direction !== 'up' && over === false) {
+  else if ((evt.code === `ArrowDown` || evt.getAttribute('id') === 'down') && direction !== 'up' && over === false) {
     direction = 'down'
   }
-  else if (evt.code === `ArrowRight` && direction !== 'left' && over === false) {
+  else if ((evt.code === `ArrowRight` || evt.getAttribute('id') === 'right') && direction !== 'left' && over === false) {
     direction = 'right'
   }
-  else if (evt.code === `ArrowLeft` && direction !== 'right' && over === false) {
+  else if ((evt.code === `ArrowLeft` || evt.getAttribute('id') === 'left') && direction !== 'right' && over === false) {
     direction = 'left'
   }
-  else if (evt.code === `Space` && over === true) {
+  else if ((evt.code === `Space` || evt.getAttribute('id') === 'space') && over === true) {
     over = false
     init()
   }
