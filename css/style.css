@@ -6,12 +6,20 @@ body{
   align-items: center;
 }
 
-#message  {
+#title  {
   height: 20px;
   width: 90vw;
   max-width: 650;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+#aside  {
+  height: 20px;
+  width: 90vw;
+  max-width: 650;
+  display: flex;
+  justify-content: center;
 }
 
 #board  {
