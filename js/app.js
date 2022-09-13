@@ -136,7 +136,9 @@ function gameOver() {
   board.style.backgroundColor = 'rgb(218, 85, 85, 1)'
   over = true
   direction = 0
-  aside.textContent = `You got ${points} points!`
+  if (points < 2) {
+    aside.textContent = `oof!`
+  } else {aside.textContent = `You got ${points} points!`}
   title.textContent = `Press the space bar to play again!`
   clearInterval(timer)
   timer = null
