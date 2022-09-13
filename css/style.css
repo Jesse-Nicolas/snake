@@ -29,7 +29,7 @@ body{
 }
 
 #board  {
-  background-color: rgb(227, 224, 224);
+  background-color: rgb(177, 172, 172);
   display: grid;
   grid-template-columns: repeat(23,1fr);
   grid-template-rows: repeat(23, 1fr);

@@ -68,7 +68,7 @@ function handleClick(evt) {
 }
 
 function init() {
-  board.style.backgroundColor = 'rgb(227, 224, 224)'
+  board.style.backgroundColor = 'rgb(177, 172, 172)'
   title.textContent = `Snake!`
   aside.textContent = `Go ahead!`
   removeAllSnakeBods()
