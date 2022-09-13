@@ -11,7 +11,7 @@ body{
   width: 90vw;
   max-width: 650;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 #board  {
