@@ -101,7 +101,7 @@ function gameOver() {
   board.style.backgroundColor = 'red'
   over = true
   direction = 0
-  aside.textContent = `Nice, you got ${points} points!`
+  aside.textContent = `You got ${points} points!`
   title.textContent = `Press the space bar to play again!`
   clearInterval(timer)
   timer = null
@@ -131,8 +131,7 @@ function moveSnake()  {
   snakeArr.unshift({x: headPosition.x, y: headPosition.y}) 
   if (timer)  {checkLoss()}
   if  (food.style.gridColumnStart === head.style.gridColumnStart && food.style.gridRowStart === head.style.gridRowStart)  {
-    goodJob()
-  }
+    goodJob() }
   removeAllSnakeBods()
   renderBod()
   while (snakeArr.length > points+1) {snakeArr.pop()}

@@ -9,6 +9,7 @@ body{
 #message  {
   height: 20px;
   width: 90vw;
+  max-width: 800px;
   display: flex;
   justify-content: space-around;
 }
@@ -19,6 +20,8 @@ body{
   grid-template-rows: repeat(23, 1fr);
   height: 90vw;
   width: 90vw;
+  max-width: 800px;
+  max-height: 800px;
   margin-top: 5px;
   border: 1px solid black;
 }
