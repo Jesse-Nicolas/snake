@@ -126,12 +126,10 @@ function renderBod() {
 
 function checkLoss()  {
   let lastFrame = snakeArr[1]
-  if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y && headPosition.x != 12) {
-    gameOver()
-  }
-  if (headPosition.x > 23 || headPosition.y > 23)  {
-    gameOver()
-  }
+  if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y)  {
+    if (headPosition.x == 12 && headPosition.y == 12) {console.log('what are you doing here?')}
+    else {gameOver()} }
+  if (headPosition.x > 23 || headPosition.y > 23) {gameOver()}
 }
 
 function gameOver() {
