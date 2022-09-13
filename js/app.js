@@ -75,8 +75,8 @@ function init() {
   points = 0
   direction = 0
   snakeArr = []
-  head.style.gridColumnStart = 11;
-  head.style.gridRowStart = 11;
+  head.style.gridColumnStart = 12;
+  head.style.gridRowStart = 12;
   renderFood()
   moveSnake()
 }
@@ -126,7 +126,7 @@ function renderBod() {
 
 function checkLoss()  {
   let lastFrame = snakeArr[1]
-  if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y && headPosition.x != 11) {
+  if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y && headPosition.x != 12) {
     gameOver()
   }
   if (headPosition.x > 23 || headPosition.y > 23)  {
