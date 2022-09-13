@@ -42,16 +42,16 @@ body{
 }
 
 #snake  {
-  background-color: darkolivegreen;
+  background-color: rgb(125, 161, 61);
   border: 1px solid black;
 }
 .snake  {
-  background-color: darkolivegreen;
+  background-color: rgb(125, 161, 61);
   border: 1px solid black;
 }
 
 #food {
-  background-color: brown;
+  background-color: rgb(244, 50, 50);
   border: 1px solid black;
 }
 
