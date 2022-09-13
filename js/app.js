@@ -66,7 +66,7 @@ function handleClick(evt) {
 function init() {
   board.style.backgroundColor = 'bisque'
   title.textContent = `Snake!`
-  aside.textContent = `Press the space bar to play!`
+  aside.textContent = `Go ahead!`
   removeAllSnakeBods()
   points = 0
   snakeArr = []
@@ -103,6 +103,7 @@ function renderBod() {
     let obj = snakeArr[i]
     bod.style.gridColumnStart = obj.x
     bod.style.gridRowStart = obj.y
+    if (obj.x === foodPosition.x && obj.y === foodPosition.y) {renderFood()}
     if (obj.x === headPosition.x && obj.y === headPosition.y) {gameOver()}
     board.appendChild(bod)
   }
@@ -157,3 +158,4 @@ function moveSnake()  {
   renderBod()
   while (snakeArr.length > points+1) {snakeArr.pop()}
 }
+
