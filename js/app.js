@@ -73,6 +73,7 @@ function init() {
   aside.textContent = `Go ahead!`
   removeAllSnakeBods()
   points = 0
+  direction = 0
   snakeArr = []
   head.style.gridColumnStart = 11;
   head.style.gridRowStart = 11;

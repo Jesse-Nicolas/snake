@@ -1,3 +1,7 @@
+* {
+  font-family: 'Antonio', sans-serif;
+}
+
 body{
   display: flex;
   flex-direction: column;
@@ -12,6 +16,7 @@ body{
   max-width: 650;
   display: flex;
   justify-content: center;
+  
 }
 
 #aside  {
@@ -20,6 +25,7 @@ body{
   max-width: 650;
   display: flex;
   justify-content: center;
+  
 }
 
 #board  {
@@ -50,11 +56,12 @@ body{
 
 #buttons  {
   width: 90vw;
-  max-width: 650;
+  max-width: 650px;
   min-height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
 }
 
 #arrows {
@@ -66,5 +73,5 @@ body{
 #stack  {
   display: grid;
   grid-template-columns: 1;
-  gap: 3px;
+  gap: 1px;
 }
