@@ -19,7 +19,8 @@ const buttons = document.getElementById('buttons')
 const hand = document.getElementById('toggleHand')
 
 /*----------------------------- Event Listeners -----------------------------*/
-body.addEventListener('keyup', function(evt) {
+window.addEventListener('keydown', function(evt) {
+  evt.preventDefault()
   handleKey(evt.code)
 })
 buttons.addEventListener('click', function(evt) {
