@@ -17,7 +17,7 @@ A re-creation of a mobile classic! Pressing a space bar initializes a new game a
 - 8-bit art created with [make8bitart.com](https://make8bitart.com/)
 
 ## Ice Box:
-- ( )Game settings drop down menu
+- (x)Game settings
 - ( )Texture body background to look more like nokia phone
 - ( )Add logic to make it impossible to u-turn the snake onto itself
 - ( )Animations
