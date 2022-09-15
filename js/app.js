@@ -30,17 +30,13 @@ buttons.addEventListener('click', function(evt) {
 /*-------------------------------- Functions --------------------------------*/
 function handleKey(evt) {
   if (evt === `ArrowUp` && direction !== 'down' && over === false) {
-    direction = 'up'
-  }
+    direction = 'up'  }
   else if (evt === `ArrowDown` && direction !== 'up' && over === false) {
-    direction = 'down'
-  }
+    direction = 'down'  }
   else if (evt === `ArrowRight` && direction !== 'left' && over === false) {
-    direction = 'right'
-  }
+    direction = 'right' }
   else if (evt === `ArrowLeft` && direction !== 'right' && over === false) {
-    direction = 'left'
-  }
+    direction = 'left'  }
   else if (evt === `Space` && over === true) {
     over = false
     init()
@@ -48,17 +44,13 @@ function handleKey(evt) {
 }
 function handleClick(evt) {
   if (evt.getAttribute('id') === `up` && direction !== 'down' && over === false) {
-    direction = 'up'
-  }
+    direction = 'up'  }
   else if (evt.getAttribute('id') === `down` && direction !== 'up' && over === false) {
-    direction = 'down'
-  }
+    direction = 'down'  }
   else if (evt.getAttribute('id') === `right` && direction !== 'left' && over === false) {
-    direction = 'right'
-  }
+    direction = 'right' }
   else if (evt.getAttribute('id') === `left` && direction !== 'right' && over === false) {
-    direction = 'left'
-  }
+    direction = 'left'  }
   else if (evt.getAttribute('id') === `space` && over === true) {
     over = false
     init()
@@ -128,7 +120,7 @@ function renderBod() {
 function checkLoss()  {
   let lastFrame = snakeArr[1]
   if (headPosition.x === lastFrame.x && headPosition.y === lastFrame.y)  {
-    if (headPosition.x == 12 && headPosition.y == 12) {console.log('what are you doing here?')}
+    if (headPosition.x == 12 && headPosition.y == 12) {}
     else {gameOver()} }
   if (headPosition.x > 23 || headPosition.y > 23) {gameOver()}
 }
@@ -137,9 +129,8 @@ function gameOver() {
   board.style.backgroundColor = 'rgb(218, 85, 85, 1)'
   over = true
   direction = 0
-  if (points < 2) {
-    aside.textContent = `oof!`
-  } else {aside.textContent = `You got ${points} points!`}
+  if (points < 2) {aside.textContent = `oof!`} 
+  else {aside.textContent = `You got ${points} points!`}
   title.textContent = `Press the space bar to play again!`
   clearInterval(timer)
   timer = null
@@ -148,17 +139,13 @@ function gameOver() {
 function moveSnake()  {
   if (timer) {
     if (direction === 'down') {
-      head.style.gridRowStart++
-    }
+      head.style.gridRowStart++ }
     else if (direction === 'up')  {
-      head.style.gridRowStart--
-    }
+      head.style.gridRowStart-- }
     else if (direction === 'right') {
-      head.style.gridColumnStart++
-    }
+      head.style.gridColumnStart++  }
     else if (direction === 'left')  {
-      head.style.gridColumnStart--
-    } 
+      head.style.gridColumnStart--  } 
   } else  {
     timer = setInterval(function()  {
       moveSnake()
