@@ -7,16 +7,16 @@ A recreation of a mobile classic! Pressing a space bar initializes a new game an
 ![An example of a losing game render on desktop](https://i.imgur.com/Zf21YfX.png)
 
 ## Technologies used:
--HTML
--CSS
--JavaScript
--git
+- HTML
+- CSS
+- JavaScript
+- git
 
 ## Ice Box:
--( )User settings drop down menu
--( )Texture body background to look more like nokia phone
--( )Add logic to make it impossible to u-turn the snake onto itself
--( )Animations
+- ( )User settings drop down menu
+- ( )Texture body background to look more like nokia phone
+- ( )Add logic to make it impossible to u-turn the snake onto itself
+- ( )Animations
 
 ### Shoutouts:
 **Big** thanks to Damian, Scott, Eric, Nick, Maddie, Jess, and Patrick for doing some beta testing and giving feedback!
