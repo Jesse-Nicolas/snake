@@ -17,6 +17,7 @@ const board = document.getElementById('board')
 const aside = document.getElementById('aside')
 const buttons = document.getElementById('buttons')
 const hand = document.getElementById('toggleHand')
+const favicon = document.getElementById("favicon")
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener('keydown', function(evt) {
@@ -84,6 +85,12 @@ function toggleHand() {
   }
 }
 
+function changeFavicon() {
+  if (over) {
+    favicon.setAttribute("href", "./assets/food.png")  }
+  else  {favicon.setAttribute("href", "./assets/snakeHead.png") }
+}
+
 function renderFood()  {
   food.style.gridColumnStart = (Math.floor(Math.random() * 23))
   food.style.gridRowStart = (Math.floor(Math.random() * 23))
@@ -95,6 +102,7 @@ function goodJob()  {
   renderFood()
   points++
   aside.textContent = `Points: ${points}`
+  changeFavicon()
 }
 
 function removeAllSnakeBods()  {
@@ -128,6 +136,7 @@ function checkLoss()  {
 function gameOver() {
   board.style.backgroundColor = 'rgb(218, 85, 85, 1)'
   over = true
+  changeFavicon()
   direction = 0
   if (points < 2) {aside.textContent = `oof!`} 
   else {aside.textContent = `You got ${points} points!`}
