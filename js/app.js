@@ -158,7 +158,7 @@ function moveSnake()  {
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 250)
+    }, 230)
   }
   headPosition.x = head.style.gridColumnStart
   headPosition.y = head.style.gridRowStart
