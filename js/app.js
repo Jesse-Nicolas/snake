@@ -6,6 +6,7 @@ let timer
 let points = 0
 let snakeArr = []
 let over = true
+let speed = 220
 
 /*------------------------ Cached Element References ------------------------*/
 const head = document.getElementById('snake')
@@ -158,7 +159,7 @@ function moveSnake()  {
   } else  {
     timer = setInterval(function()  {
       moveSnake()
-    }, 230)
+    }, speed)
   }
   headPosition.x = head.style.gridColumnStart
   headPosition.y = head.style.gridRowStart
@@ -170,4 +171,3 @@ function moveSnake()  {
   renderBod()
   while (snakeArr.length > points+1) {snakeArr.pop()}
 }
-

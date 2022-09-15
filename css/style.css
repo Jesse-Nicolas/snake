@@ -72,7 +72,7 @@ body{
   column-gap: 10px;
 }
 
-#stack  {
+.stack  {
   display: grid;
   grid-template-columns: 1;
   gap: 1px;
