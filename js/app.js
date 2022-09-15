@@ -6,7 +6,8 @@ let timer
 let points = 0
 let snakeArr = []
 let over = true
-let speed = 220
+let speed = 200
+let speedSetting = 3
 
 /*------------------------ Cached Element References ------------------------*/
 const head = document.getElementById('snake')
@@ -19,14 +20,17 @@ const aside = document.getElementById('aside')
 const buttons = document.getElementById('buttons')
 const hand = document.getElementById('toggleHand')
 const favicon = document.getElementById("favicon")
+const speedDisplay = document.getElementById('display-speed')
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener('keydown', function(evt) {
-  evt.preventDefault()
+  if (evt.code === 'ArrowUp' || evt.code === 'ArrowDown' || evt.code === 'Space') {
+    evt.preventDefault()  }
   handleKey(evt.code)
 })
 buttons.addEventListener('click', function(evt) {
   handleClick(evt.target)
+  changeSpeed(evt.target)
 })
 
 /*-------------------------------- Functions --------------------------------*/
@@ -62,10 +66,36 @@ function handleClick(evt) {
   }
 }
 
+function changeSpeed(evt)  {
+  if (evt.getAttribute('id') === 'up-speed' && speedSetting < 5)  {
+    speedSetting++  }
+  else if (evt.getAttribute('id') === 'down-speed' && speedSetting > 1)  {
+    speedSetting--  }
+  speedDisplay.textContent = `Speed: ${speedSetting}`
+  switch (speedSetting) {
+    case 1:
+      speed = 400;
+      break;
+    case 2:
+      speed = 300;
+      break;
+    case 3:
+      speed = 200;
+      break;
+    case 4:
+      speed = 150;
+      break;
+    case 5:
+      speed = 100;
+      break;
+  }
+}
+
 function init() {
   board.style.backgroundColor = 'rgb(177, 172, 172)'
   title.textContent = `Snake!`
   aside.textContent = `Go ahead!`
+  speedDisplay.textContent = `Speed: ${speedSetting}`
   removeAllSnakeBods()
   points = 0
   direction = 0
