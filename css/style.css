@@ -40,6 +40,7 @@ body{
   max-height: 650px;
   margin-top: 5px auto;
   border: 1px solid black;
+  border-radius: 3px;
 }
 
 #snake  {
@@ -79,5 +80,9 @@ body{
 
 img {
   max-width: 100%;
-  border-radius: 3px;
+  border-radius: 5px;
+}
+
+button  {
+  border-radius: 15px;
 }
