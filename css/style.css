@@ -71,6 +71,7 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 5px;
+  min-width: 200px;
 }
 
 .stack  {
@@ -82,6 +83,7 @@ body{
 #settings {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  max-width: 120px;
 }
 
 #display-speed  {
